@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine;
 
-public class IdleState : BaseState
+public class RunState : BaseState
 {
     public override void Initialize()
     {
@@ -10,8 +9,7 @@ public class IdleState : BaseState
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            Hero.Jump();
+        throw new NotImplementedException();
     }
 
     public override void End()

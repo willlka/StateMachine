@@ -9,7 +9,8 @@ public class Hero : MonoBehaviour
         Run,
         Jump,
         Sit,
-        Attack
+        AttackTypeOne,
+        AttackTypeTwo
     }
 
     public static Hero Instance { get; private set; }
@@ -23,9 +24,11 @@ public class Hero : MonoBehaviour
         Instance = this;
         instanceStateDictionary = new Dictionary<HeroState, BaseState>();
         instanceStateDictionary.Add(HeroState.Idle, new IdleState());
-        instanceStateDictionary.Add(HeroState.Jump, new IdleState()); //todo
-        instanceStateDictionary.Add(HeroState.Sit, new IdleState()); //todo
-        instanceStateDictionary.Add(HeroState.Attack, new IdleState()); //todo
+        instanceStateDictionary.Add(HeroState.Run, new RunState());
+        instanceStateDictionary.Add(HeroState.Jump, new JumpState());
+        instanceStateDictionary.Add(HeroState.Sit, new SitState());
+        instanceStateDictionary.Add(HeroState.AttackTypeOne, new AttackTypeOne());
+        instanceStateDictionary.Add(HeroState.AttackTypeTwo, new AttackTypeTwo());
     }
 
     public static void UpdateCurrentState()
@@ -33,21 +36,38 @@ public class Hero : MonoBehaviour
         stateDictionary[CurrentState].Update();
     }
 
+    public static void Idle()
+    {
+        stateDictionary[CurrentState].End();
+        CurrentState = HeroState.Idle;
+        stateDictionary[CurrentState].Initialize();
+    }
+
     public static void Jump()
     {
-        stateDictionary[HeroState.Jump].Initialize();
+        stateDictionary[CurrentState].End();
         CurrentState = HeroState.Jump;
+        stateDictionary[CurrentState].Initialize();
     }
 
     public static void Sit()
     {
-        stateDictionary[HeroState.Sit].Initialize();
+        stateDictionary[CurrentState].End();
         CurrentState = HeroState.Sit;
+        stateDictionary[CurrentState].Initialize();
     }
 
-    public static void Attack()
+    public static void AttackTypeOne()
     {
-        stateDictionary[HeroState.Attack].Initialize();
-        CurrentState = HeroState.Attack;
+        stateDictionary[CurrentState].End();
+        CurrentState = HeroState.AttackTypeOne;
+        stateDictionary[CurrentState].Initialize();
+    }
+
+    public static void AttackTypeTwo()
+    {
+        stateDictionary[CurrentState].End();
+        CurrentState = HeroState.AttackTypeTwo;
+        stateDictionary[CurrentState].Initialize();
     }
 }
