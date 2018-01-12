@@ -5,17 +5,21 @@ public class IdleState : BaseState
 {
     public override void Initialize()
     {
-        throw new NotImplementedException();
+        Hero.SetHeroDirection(HeroDirection.Forward);
     }
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        float horizontal = Input.GetAxis("Horizontal");
+
+        if (Hero.CurrentState != HeroState.Run && (horizontal > Mathf.Epsilon || horizontal < -Mathf.Epsilon))
+            Hero.Run();
+        else if (Hero.CurrentState == HeroState.Run && horizontal < Mathf.Epsilon && horizontal > -Mathf.Epsilon)
+            Hero.Idle();
+
+        if (Input.GetButtonDown("Jump"))
             Hero.Jump();
     }
 
-    public override void End()
-    {
-        throw new NotImplementedException();
-    }
+    public override void End() { }
 }
