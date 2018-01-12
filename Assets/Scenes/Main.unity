@@ -264,6 +264,7 @@ MonoBehaviour:
   FacingForward: {fileID: 21300038, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
   MoveForce: 365
   MaxSpeed: 1
+  JumpForce: 300
 --- !u!212 &236004052
 SpriteRenderer:
   m_ObjectHideFlags: 0
