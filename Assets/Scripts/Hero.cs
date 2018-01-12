@@ -25,12 +25,15 @@ public class Hero : MonoBehaviour
     public Sprite FacingLeft;
     public Sprite FacingForward;
     public float MoveForce = 365f;          // Amount of force added to move the player left and right.
-    public float MaxSpeed = 5f;				// The fastest the player can travel in the x axis.
+    public float MaxSpeed = 5f;             // The fastest the player can travel in the x axis.
+    public float JumpForce = 300f;			// Amount of force added when the player jumps.
+
 
     public static Hero Instance { get; private set; }
     public static HeroState CurrentState;
     public static Rigidbody2D Body;
     public static HeroDirection Direction = HeroDirection.Forward;
+    public static Animator HeroAnim;
 
     private static Dictionary<HeroState, BaseState> stateDictionary { get { return Instance.instanceStateDictionary; } set { } }
     private Dictionary<HeroState, BaseState> instanceStateDictionary;

@@ -1,19 +1,16 @@
 ﻿using System;
+using UnityEngine;
 
 public class JumpState : BaseState
 {
     public override void Initialize()
     {
-        throw new NotImplementedException();
+        //Hero.HeroAnim //todo
+        Hero.Body.AddForce(new Vector2(0f, Hero.Instance.JumpForce));
+        Hero.Idle();
     }
 
-    public override void Update()
-    {
-        throw new NotImplementedException();
-    }
+    public override void Update() { }
 
-    public override void End()
-    {
-        throw new NotImplementedException();
-    }
+    public override void End() { }
 }
