@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class AttackTypeOne : BaseState
+public class AttackTypeOneState : BaseState
 {
     public override void Initialize()
     {
