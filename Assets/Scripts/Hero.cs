@@ -57,6 +57,12 @@ public class Hero : MonoBehaviour
 
         if (spriteRenderer == null)
             Debug.LogError("Hero script should be near SpriteRenderer component");
+
+        if (Body == null)
+            Debug.LogError("Hero script should be near Rigidbody2D component");
+
+        if (HeroAnim == null)
+            Debug.LogError("Hero script should be near Animator component");
     }
 
     private void Update()
