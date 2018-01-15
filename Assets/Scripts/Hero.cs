@@ -19,6 +19,7 @@ public enum HeroDirection
 }
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class Hero : MonoBehaviour
 {
     public Sprite FacingRight;
@@ -52,6 +53,7 @@ public class Hero : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         Body = GetComponent<Rigidbody2D>();
+        HeroAnim = GetComponent<Animator>();
 
         if (spriteRenderer == null)
             Debug.LogError("Hero script should be near SpriteRenderer component");
