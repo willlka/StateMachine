@@ -22,9 +22,6 @@ public enum HeroDirection
 [RequireComponent(typeof(Animator))]
 public class Hero : MonoBehaviour
 {
-    public Sprite FacingRight;
-    public Sprite FacingLeft;
-    public Sprite FacingForward;
     public float MoveForce = 365f;          // Amount of force added to move the player left and right.
     public float MaxSpeed = 5f;             // The fastest the player can travel in the x axis.
     public float JumpForce = 300f;			// Amount of force added when the player jumps.
@@ -33,7 +30,7 @@ public class Hero : MonoBehaviour
     public static Hero Instance { get; private set; }
     public static HeroState CurrentState;
     public static Rigidbody2D Body;
-    public static HeroDirection Direction = HeroDirection.Forward;
+    public static HeroDirection Direction { get; private set; }
     public static Animator HeroAnim;
 
     private static Dictionary<HeroState, BaseState> stateDictionary { get { return Instance.instanceStateDictionary; } set { } }
@@ -43,6 +40,7 @@ public class Hero : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Direction = HeroDirection.Forward;
         instanceStateDictionary = new Dictionary<HeroState, BaseState>();
         instanceStateDictionary.Add(HeroState.Idle, new IdleState());
         instanceStateDictionary.Add(HeroState.Run, new RunState());
@@ -72,13 +70,6 @@ public class Hero : MonoBehaviour
 
     public static void SetHeroDirection(HeroDirection direction)
     {
-        if (direction == HeroDirection.Forward)
-            spriteRenderer.sprite = Instance.FacingForward;
-        else if (direction == HeroDirection.Right)
-            spriteRenderer.sprite = Instance.FacingRight;
-        else if (direction == HeroDirection.Left)
-            spriteRenderer.sprite = Instance.FacingLeft;
-
         Direction = direction;
     }
 
