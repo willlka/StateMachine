@@ -73,45 +73,22 @@ public class Hero : MonoBehaviour
         Direction = direction;
     }
 
-    public static void Idle()
-    {
-        stateDictionary[CurrentState].End();
-        CurrentState = HeroState.Idle;
-        stateDictionary[CurrentState].Initialize();
-    }
+    public static void Idle() { SetHeroState(HeroState.Idle); }
 
-    public static void Run()
-    {
-        stateDictionary[CurrentState].End();
-        CurrentState = HeroState.Run;
-        stateDictionary[CurrentState].Initialize();
-    }
+    public static void Run() { SetHeroState(HeroState.Run); }
 
-    public static void Jump()
-    {
-        stateDictionary[CurrentState].End();
-        CurrentState = HeroState.Jump;
-        stateDictionary[CurrentState].Initialize();
-    }
+    public static void Jump() { SetHeroState(HeroState.Jump); }
 
-    public static void Sit()
-    {
-        stateDictionary[CurrentState].End();
-        CurrentState = HeroState.Sit;
-        stateDictionary[CurrentState].Initialize();
-    }
+    public static void Sit() { SetHeroState(HeroState.Sit); }
 
-    public static void AttackTypeOne()
-    {
-        stateDictionary[CurrentState].End();
-        CurrentState = HeroState.AttackTypeOne;
-        stateDictionary[CurrentState].Initialize();
-    }
+    public static void AttackTypeOne() { SetHeroState(HeroState.AttackTypeOne); }
 
-    public static void AttackTypeTwo()
+    public static void AttackTypeTwo() { SetHeroState(HeroState.AttackTypeTwo); }
+
+    private static void SetHeroState(HeroState state)
     {
         stateDictionary[CurrentState].End();
-        CurrentState = HeroState.AttackTypeTwo;
+        CurrentState = state;
         stateDictionary[CurrentState].Initialize();
     }
 }
